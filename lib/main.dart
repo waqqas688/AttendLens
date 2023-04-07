@@ -5,6 +5,7 @@ import 'package:studlens/splash_screen.dart';
 import 'package:studlens/verify.dart';
 import 'home_page.dart';
 
+//Besharam Adnan kab se ruka hu mai
 void main() {
   runApp(MyApp());
 }
