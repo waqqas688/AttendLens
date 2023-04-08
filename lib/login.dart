@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:studlens/home_page.dart';
+import 'package:studlens/dash1.dart';
 
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
@@ -26,12 +26,17 @@ class _LoginState extends State<Login> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              SizedBox(
-                height: 25,
-              ),
-              Text(
-                "Log In",
-                style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+              // SizedBox(
+              //   height: 25,
+              // ),
+              Container(
+                height: MediaQuery.of(context).size.height * .12,
+                width: MediaQuery.of(context).size.height * .84,
+                color: Color(0xFFD2BD83),
+                child: Text(
+                  "Log In",
+                  style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+                ),
               ),
               SizedBox(
                 height: 10,
