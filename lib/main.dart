@@ -10,10 +10,9 @@ import 'dash1.dart';
 import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-
 //Besharam Adnan kab se ruka hu mai
 int? isviewed;
-void main() async{
+void main() async {
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
     statusBarColor: Colors.transparent,
   ));
@@ -28,7 +27,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: isviewed != 0 ? "intro":"splash" ,
+      initialRoute: "splash",
       routes: {
         "splash": (context) => Splash_screen(),
         "d1": (context) => main_body(),

@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:studlens/dash1.dart';
 import 'package:studlens/after_splash/after_splash.dart';
+import 'package:studlens/main.dart';
 
 class Splash_screen extends StatefulWidget {
   @override
@@ -12,7 +13,16 @@ class _Splashscreen extends State<Splash_screen> {
   @override
   void initState() {
     super.initState();
-    Timer(Duration(seconds: 4), () => Navigator.pushNamed(context, "intro"));
+    Timer(
+      Duration(seconds: 4),
+      () => isviewed != 0
+          ? Navigator.of(context).pushReplacement(
+              MaterialPageRoute(builder: (context) => AfterSplash()),
+            )
+          : Navigator.of(context).pushReplacement(
+              MaterialPageRoute(builder: (context) => MyHomePage()),
+            ),
+    );
   }
 
   @override
