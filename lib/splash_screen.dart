@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:studlens/dash1.dart';
+import 'package:studlens/after_splash/after_splash.dart';
 
 class Splash_screen extends StatefulWidget {
   @override
@@ -11,7 +12,7 @@ class _Splashscreen extends State<Splash_screen> {
   @override
   void initState() {
     super.initState();
-    Timer(Duration(seconds: 4), () => Navigator.pushNamed(context, 'navbar'));
+    Timer(Duration(seconds: 4), () => Navigator.pushNamed(context, "intro"));
   }
 
   @override

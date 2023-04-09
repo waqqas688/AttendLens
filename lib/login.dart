@@ -1,3 +1,7 @@
+import 'dart:async';
+import 'dart:convert';
+import 'package:http/http.dart' as http;
+
 import 'package:flutter/material.dart';
 import 'package:studlens/dash1.dart';
 
@@ -9,7 +13,30 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
-  TextEditingController countryController = TextEditingController();
+  TextEditingController pw = TextEditingController();
+  TextEditingController email = TextEditingController();
+
+  Future<String> getData() async {
+    var url = 'http://192.168.0.102:5000';
+    var userdata;
+    try {
+      Map data = {'user_id': email.text, 'user_pw': pw.text};
+      var response = await http.post(Uri.parse(url + '/userAuth'),
+          headers: <String, String>{
+            'Content-Type': 'application/json; charset=UTF-8',
+          },
+          body: jsonEncode(data));
+      userdata = jsonDecode(response.body);
+    } catch (e) {
+      print(e);
+    }
+    print(userdata);
+    if (userdata['status'] == 'ACCEPTED') {
+      Navigator.pushNamed(context, 'd1');
+    }
+
+    return '';
+  }
 
   @override
   void initState() {
@@ -35,6 +62,7 @@ class _LoginState extends State<Login> {
                 color: Color(0xFFD2BD83),
                 child: Text(
                   "Log In",
+                  textAlign: TextAlign.center,
                   style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
                 ),
               ),
@@ -64,10 +92,39 @@ class _LoginState extends State<Login> {
                     ),
                     Expanded(
                         child: TextField(
-                      keyboardType: TextInputType.phone,
+                      controller: email,
+                      keyboardType: TextInputType.emailAddress,
                       decoration: InputDecoration(
                         border: InputBorder.none,
                         hintText: "Email Id",
+                      ),
+                    ))
+                  ],
+                ),
+              ),
+              SizedBox(
+                height: 15,
+              ),
+              Container(
+                height: 55,
+                decoration: BoxDecoration(
+                    border: Border.all(width: 1, color: Colors.black),
+                    borderRadius: BorderRadius.circular(10)),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    SizedBox(
+                      width: 10,
+                    ),
+                    Expanded(
+                        child: TextField(
+                      controller: pw,
+                      obscureText: true,
+                      obscuringCharacter: "*",
+                      keyboardType: TextInputType.text,
+                      decoration: InputDecoration(
+                        border: InputBorder.none,
+                        hintText: "Password",
                       ),
                     ))
                   ],
@@ -84,9 +141,7 @@ class _LoginState extends State<Login> {
                         primary: Colors.green.shade600,
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10))),
-                    onPressed: () {
-                      Navigator.pushNamed(context, 'verify');
-                    },
+                    onPressed: () => getData(),
                     child: Text("Send the code")),
               )
             ],

@@ -1,4 +1,3 @@
-import 'dart:html';
 import 'package:flutter/material.dart';
 import 'package:bottom_navigation_bar/bottom_navigation_bar.dart';
 import 'package:percent_indicator/percent_indicator.dart';
