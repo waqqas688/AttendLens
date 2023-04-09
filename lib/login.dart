@@ -4,6 +4,7 @@ import 'package:http/http.dart' as http;
 
 import 'package:flutter/material.dart';
 import 'package:studlens/dash1.dart';
+import 'package:studlens/main.dart';
 
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
@@ -32,7 +33,8 @@ class _LoginState extends State<Login> {
     }
     print(userdata);
     if (userdata['status'] == 'ACCEPTED') {
-      Navigator.pushNamed(context, 'd1');
+      Navigator.of(context).pushReplacement(
+              MaterialPageRoute(builder: (context) => MyHomePage()));
     }
 
     return '';
